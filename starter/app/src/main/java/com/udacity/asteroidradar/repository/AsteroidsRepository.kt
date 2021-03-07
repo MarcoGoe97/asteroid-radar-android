@@ -24,9 +24,15 @@ class AsteroidsRepository (private val database: AsteroidDatabase) {
     suspend fun refreshAsteroids() {
         withContext(Dispatchers.IO) {
             val asteroidsString =
-                AsteroidsAPI.retrofitService.getAsteroids("2021-03-06", BuildConfig.API_KEY)
+                AsteroidsAPI.retrofitService.getAsteroids(Date().toSimpleString(), BuildConfig.API_KEY)
             val asteroids = parseAsteroidsJsonResult(JSONObject(asteroidsString))
             database.asteroidDoa.insertAll(*asteroids.asDatabaseModel())
+        }
+    }
+
+    suspend fun deleteOldAsteroids() {
+        withContext(Dispatchers.IO){
+            database.asteroidDoa.deleteOldAsteroids(Date().toSimpleString())
         }
     }
 }

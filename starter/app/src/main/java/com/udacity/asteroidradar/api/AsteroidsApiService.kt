@@ -14,7 +14,7 @@ private val retrofit = Retrofit.Builder()
 
 interface AsteroidsApiService {
     @GET("feed")
-    suspend fun getAsteroids(@Query("start_date") startDate: String, /*@Query("end_date") endDate: String,*/ @Query("api_key") apiKey: String) : String
+    suspend fun getAsteroids(@Query("start_date") startDate: String, @Query("api_key") apiKey: String) : String
 }
 
 object AsteroidsAPI {
