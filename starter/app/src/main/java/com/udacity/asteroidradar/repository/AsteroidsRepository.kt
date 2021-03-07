@@ -9,13 +9,15 @@ import com.udacity.asteroidradar.api.asDatabaseModel
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.database.AsteroidDatabase
 import com.udacity.asteroidradar.database.asDomainModel
+import com.udacity.asteroidradar.extentions.toSimpleString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
+import java.util.*
 
 class AsteroidsRepository (private val database: AsteroidDatabase) {
 
-    val asteroids: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDoa.getAsteroids()) {
+    val asteroids: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDoa.getAsteroids(Date().toSimpleString())) {
         it.asDomainModel()
     }
 
