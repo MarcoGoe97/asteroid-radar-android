@@ -14,11 +14,12 @@ class MainViewModel(application: Application) : ViewModel () {
     private val asteroidRepository = AsteroidsRepository(database)
 
     val asteroids = asteroidRepository.asteroids
+    val pictureOfDay = asteroidRepository.pictureOfDay
 
     init {
         viewModelScope.launch {
             try {
-                asteroidRepository.refreshAsteroids()
+                asteroidRepository.refreshData()
             } catch (e: Exception) {
                 print(e.message)
             }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.BuildConfig
+import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.api.AsteroidsAPI
 import com.udacity.asteroidradar.api.asDatabaseModel
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
@@ -21,12 +22,30 @@ class AsteroidsRepository (private val database: AsteroidDatabase) {
         it.asDomainModel()
     }
 
+    val pictureOfDay: LiveData<PictureOfDay> = Transformations.map(database.asteroidDoa.getPictureOfDay()) {
+        it?.asDomainModel()
+    }
+
+    suspend fun refreshData() {
+        refreshAsteroids()
+        refreshPictureOfDay()
+    }
+
     suspend fun refreshAsteroids() {
         withContext(Dispatchers.IO) {
             val asteroidsString =
-                AsteroidsAPI.retrofitService.getAsteroids(Date().toSimpleString(), BuildConfig.API_KEY)
+                AsteroidsAPI.retrofitScalarsService.getAsteroids(Date().toSimpleString(), BuildConfig.API_KEY)
             val asteroids = parseAsteroidsJsonResult(JSONObject(asteroidsString))
             database.asteroidDoa.insertAll(*asteroids.asDatabaseModel())
+        }
+    }
+
+    private suspend fun refreshPictureOfDay() {
+        withContext(Dispatchers.IO) {
+            val pictureOfDay = AsteroidsAPI.retrofitMoshiService.getPictureOfDay(BuildConfig.API_KEY)
+            if(pictureOfDay.mediaType == "image") {
+                database.asteroidDoa.insert(pictureOfDay.asDatabaseModel())
+            }
         }
     }
 

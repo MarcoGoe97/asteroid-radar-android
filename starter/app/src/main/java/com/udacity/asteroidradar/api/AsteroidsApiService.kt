@@ -1,24 +1,44 @@
 package com.udacity.asteroidradar.api
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.udacity.asteroidradar.PictureOfDay
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private const val BASE_URL = "https://api.nasa.gov/neo/rest/v1/"
+private const val BASE_URL = "https://api.nasa.gov/"
 
-private val retrofit = Retrofit.Builder()
+private val retrofitScalars = Retrofit.Builder()
     .addConverterFactory(ScalarsConverterFactory.create())
     .baseUrl(BASE_URL)
     .build()
 
+private val moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
+
+private val retrofitMoshi = Retrofit.Builder()
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .baseUrl(BASE_URL)
+        .build()
+
 interface AsteroidsApiService {
-    @GET("feed")
+    @GET("neo/rest/v1/feed")
     suspend fun getAsteroids(@Query("start_date") startDate: String, @Query("api_key") apiKey: String) : String
+
+    @GET("planetary/apod")
+    suspend fun getPictureOfDay(@Query("api_key") apiKey: String): PictureOfDay
 }
 
 object AsteroidsAPI {
-    val retrofitService: AsteroidsApiService by lazy {
-        retrofit.create(AsteroidsApiService::class.java)
+    val retrofitScalarsService: AsteroidsApiService by lazy {
+        retrofitScalars.create(AsteroidsApiService::class.java)
+    }
+
+    val retrofitMoshiService: AsteroidsApiService by lazy {
+        retrofitMoshi.create(AsteroidsApiService::class.java)
     }
 }

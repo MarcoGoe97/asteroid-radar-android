@@ -16,4 +16,10 @@ interface AsteroidDao {
 
     @Query("delete from databaseasteroid where closeApproachDate < :current_date")
     fun deleteOldAsteroids(current_date: String)
+
+    @Query("select * from databasepictureofday limit 1")
+    fun getPictureOfDay(): LiveData<DatabasePictureOfDay>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(pictureOfDay: DatabasePictureOfDay)
 }
