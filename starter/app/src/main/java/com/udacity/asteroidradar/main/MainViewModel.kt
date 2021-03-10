@@ -25,4 +25,8 @@ class MainViewModel(application: Application) : ViewModel () {
             }
         }
     }
+
+    fun updateFilters(asteroidsFilter: AsteroidsRepository.AsteroidsFilter) {
+        asteroidRepository.updateAsteroidsFilter(asteroidsFilter)
+    }
 }
