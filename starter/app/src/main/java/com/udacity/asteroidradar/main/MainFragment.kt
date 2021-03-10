@@ -36,7 +36,10 @@ class MainFragment : Fragment() {
         viewModel.pictureOfDay.observe(viewLifecycleOwner) {
             it?.let { pictureOfDay ->
                 Picasso.with(context).load(pictureOfDay.url).into(binding.activityMainImageOfTheDay)
-            }
+                binding.activityMainImageOfTheDay.contentDescription = getString(R.string.nasa_picture_of_day_content_description_format, pictureOfDay.title)
+            } ?: {
+                binding.activityMainImageOfTheDay.contentDescription = getString(R.string.this_is_nasa_s_picture_of_day_showing_nothing_yet)
+            }()
         }
 
         setHasOptionsMenu(true)
