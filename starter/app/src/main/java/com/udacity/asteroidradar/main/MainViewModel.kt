@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.database.AsteroidDatabase
 import com.udacity.asteroidradar.repository.AsteroidsRepository
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class MainViewModel(application: Application) : ViewModel () {
 
@@ -19,11 +18,7 @@ class MainViewModel(application: Application) : ViewModel () {
 
     init {
         viewModelScope.launch {
-            try {
-                asteroidRepository.refreshData()
-            } catch (e: Exception) {
-                print(e.message)
-            }
+            asteroidRepository.refreshData()
         }
     }
 

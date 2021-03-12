@@ -15,6 +15,7 @@ import com.udacity.asteroidradar.extentions.toSimpleString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
+import java.lang.Exception
 import java.util.*
 
 class AsteroidsRepository(private val database: AsteroidDatabase) {
@@ -60,10 +61,14 @@ class AsteroidsRepository(private val database: AsteroidDatabase) {
         get() = _loading
 
     suspend fun refreshData() {
-        _loading.value = true
-        refreshAsteroids()
-        refreshPictureOfDay()
-        _loading.value = false
+        try {
+            _loading.value = true
+            refreshAsteroids()
+            refreshPictureOfDay()
+            _loading.value = false
+        } catch (e: Exception) {
+            _loading.value = false
+        }
     }
 
     suspend fun refreshAsteroids() {
