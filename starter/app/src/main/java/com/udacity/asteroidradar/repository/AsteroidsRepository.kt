@@ -3,14 +3,14 @@ package com.udacity.asteroidradar.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.udacity.asteroidradar.Asteroid
+import com.udacity.asteroidradar.repository.api.Asteroid
 import com.udacity.asteroidradar.BuildConfig
-import com.udacity.asteroidradar.PictureOfDay
-import com.udacity.asteroidradar.api.AsteroidsAPI
-import com.udacity.asteroidradar.api.asDatabaseModel
-import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
-import com.udacity.asteroidradar.database.AsteroidDatabase
-import com.udacity.asteroidradar.database.asDomainModel
+import com.udacity.asteroidradar.repository.api.PictureOfDay
+import com.udacity.asteroidradar.repository.api.AsteroidsAPI
+import com.udacity.asteroidradar.repository.api.asDatabaseModel
+import com.udacity.asteroidradar.repository.api.parseAsteroidsJsonResult
+import com.udacity.asteroidradar.repository.database.AsteroidDatabase
+import com.udacity.asteroidradar.repository.database.asDomainModel
 import com.udacity.asteroidradar.extentions.toSimpleString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -35,7 +35,6 @@ class AsteroidsRepository(private val database: AsteroidDatabase) {
             var endDate = Date().toSimpleString()
             if(filter == AsteroidsFilter.WEEK) {
                 val calendar = Calendar.getInstance()
-                //last day of week, Sunday is last
                 calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
 
                 val year = calendar[Calendar.YEAR]

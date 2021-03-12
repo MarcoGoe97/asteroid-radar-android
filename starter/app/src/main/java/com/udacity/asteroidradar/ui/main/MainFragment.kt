@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.main
+package com.udacity.asteroidradar.ui.main
 
 import android.os.Bundle
 import android.view.*
@@ -13,7 +13,8 @@ import com.udacity.asteroidradar.repository.AsteroidsRepository
 class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this, MainViewModelFactory(requireActivity().application)).get(MainViewModel::class.java)
+        ViewModelProvider(this, MainViewModelFactory(requireActivity().application)).get(
+            MainViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

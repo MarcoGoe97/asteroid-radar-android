@@ -1,9 +1,9 @@
-package com.udacity.asteroidradar.main
+package com.udacity.asteroidradar.ui.main
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.udacity.asteroidradar.database.AsteroidDatabase
+import com.udacity.asteroidradar.repository.database.AsteroidDatabase
 import com.udacity.asteroidradar.repository.AsteroidsRepository
 import kotlinx.coroutines.launch
 

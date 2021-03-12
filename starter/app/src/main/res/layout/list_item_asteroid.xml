@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="asteroid"
-            type="com.udacity.asteroidradar.Asteroid" />
+            type="com.udacity.asteroidradar.repository.api.Asteroid" />
 
         <variable
             name="clickListener"
-            type="com.udacity.asteroidradar.main.AsteroidListener" />
+            type="com.udacity.asteroidradar.ui.main.AsteroidListener" />
     </data>
 
     <LinearLayout
@@ -49,8 +50,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@{asteroid.potentiallyHazardous ? @drawable/ic_status_potentially_hazardous : @drawable/ic_status_normal}"
             android:contentDescription="@{asteroid.potentiallyHazardous ? @string/potentially_hazardous_asteroid : @string/not_hazardous_asteroid}"
+            app:statusIcon="@{asteroid.potentiallyHazardous}"
             tools:src="@drawable/ic_status_potentially_hazardous"/>
     </LinearLayout>
 </layout>

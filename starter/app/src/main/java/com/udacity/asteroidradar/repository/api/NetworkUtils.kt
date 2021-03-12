@@ -1,10 +1,8 @@
-package com.udacity.asteroidradar.api
+package com.udacity.asteroidradar.repository.api
 
-import com.udacity.asteroidradar.Asteroid
-import com.udacity.asteroidradar.Constants
-import com.udacity.asteroidradar.PictureOfDay
-import com.udacity.asteroidradar.database.DatabaseAsteroid
-import com.udacity.asteroidradar.database.DatabasePictureOfDay
+import com.udacity.asteroidradar.util.Constants
+import com.udacity.asteroidradar.repository.database.DatabaseAsteroid
+import com.udacity.asteroidradar.repository.database.DatabasePictureOfDay
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*

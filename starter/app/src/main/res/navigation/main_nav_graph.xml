@@ -6,23 +6,27 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.udacity.asteroidradar.main.MainFragment"
+        android:name="com.udacity.asteroidradar.ui.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_showDetail"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.udacity.asteroidradar.detail.DetailFragment"
+        android:name="com.udacity.asteroidradar.ui.detail.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail">
 
         <argument
             android:name="selectedAsteroid"
-            app:argType="com.udacity.asteroidradar.Asteroid"/>
+            app:argType="com.udacity.asteroidradar.repository.api.Asteroid"/>
     </fragment>
 
 </navigation>

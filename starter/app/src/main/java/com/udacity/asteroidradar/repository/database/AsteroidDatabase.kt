@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.database
+package com.udacity.asteroidradar.repository.database
 
 import android.content.Context
 import androidx.room.Database

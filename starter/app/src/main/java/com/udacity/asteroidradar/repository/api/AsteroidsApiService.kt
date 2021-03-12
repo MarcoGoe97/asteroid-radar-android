@@ -1,15 +1,13 @@
-package com.udacity.asteroidradar.api
+package com.udacity.asteroidradar.repository.api
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.udacity.asteroidradar.PictureOfDay
+import com.udacity.asteroidradar.util.Constants.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
-
-private const val BASE_URL = "https://api.nasa.gov/"
 
 private val retrofitScalars = Retrofit.Builder()
     .addConverterFactory(ScalarsConverterFactory.create())

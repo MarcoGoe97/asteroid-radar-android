@@ -1,8 +1,8 @@
-package com.udacity.asteroidradar.database
+package com.udacity.asteroidradar.repository.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.udacity.asteroidradar.Asteroid
+import com.udacity.asteroidradar.repository.api.Asteroid
 
 @Entity
 data class DatabaseAsteroid (
