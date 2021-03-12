@@ -15,6 +15,7 @@ class MainViewModel(application: Application) : ViewModel () {
 
     val asteroids = asteroidRepository.asteroids
     val pictureOfDay = asteroidRepository.pictureOfDay
+    val loading = asteroidRepository.loading
 
     init {
         viewModelScope.launch {

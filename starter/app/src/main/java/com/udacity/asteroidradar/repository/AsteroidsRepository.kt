@@ -55,9 +55,15 @@ class AsteroidsRepository(private val database: AsteroidDatabase) {
         it?.asDomainModel()
     }
 
+    private val _loading = MutableLiveData(false)
+    val loading: LiveData<Boolean>
+        get() = _loading
+
     suspend fun refreshData() {
+        _loading.value = true
         refreshAsteroids()
         refreshPictureOfDay()
+        _loading.value = false
     }
 
     suspend fun refreshAsteroids() {
