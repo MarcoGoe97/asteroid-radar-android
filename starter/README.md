@@ -1,9 +1,11 @@
-# Purpose of this Folder
+### Prerequisites
 
-This folder should contain the scaffolded project files to get a student started on their project. This repo will be added to the Classroom for students to use, so please do not have any solutions in this folder.
+An API key from NASA is required. You can get it from https://api.nasa.gov/
 
-## Note: Android Kotlin Gradle Update
-Use the updated Gradle version in the `~/gradle/wrapper/gradle-wrapper.properties` file:
+Search for the following line in the build.gradle(:app) file:
 ```
-distributionUrl = https\://services.gradle.org/distributions/gradle-6.1.1-all.zip
+it.buildConfigField 'String', 'API_KEY', '"XXXXXX"'
 ```
+where "XXXXXX" is replaced with your actual API key.
+
+You will not be able to build or use the app until this is done.
